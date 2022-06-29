@@ -1,0 +1,17 @@
+package rules;
+import org.example.entity.Order;
+
+rule "rule001"
+when
+  	$order:Order(amount < 100);
+then
+    $order.setScore(0);
+  	System.out.println("金额小于100");
+end
+rule "rule002"
+when
+  	$order:Order(amount > 100 && amount < 500);
+then
+  	$order.setScore(100);
+    System.out.println("金额大于100，小于500");
+end
