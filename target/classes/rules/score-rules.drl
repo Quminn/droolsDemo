@@ -1,17 +1,20 @@
 package rules;
 import org.example.entity.Order;
+import java.lang.String;
+global java.lang.StringBuilder  res;
 
 rule "rule001"
+no-loop true
 when
-  	$order:Order(amount < 100);
+  	$state:String($state == "yes");
 then
-    $order.setScore(0);
-  	System.out.println("金额小于100");
+    res.append("通过");
+  	System.out.println("状态为：" + res.toString());
 end
 rule "rule002"
 when
-  	$order:Order(amount > 100 && amount < 500);
+  	$state:String($state == "no");
 then
-  	$order.setScore(100);
-    System.out.println("金额大于100，小于500");
+  	res.append("不通过");
+    System.out.println("状态为：" + res.toString());
 end
